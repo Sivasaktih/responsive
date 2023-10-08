@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign Up</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin-top: 60px;
+            margin-right: 30px;
+            padding: 0;
+        }
+
+        .container {
+            max-width: 400px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #fff;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            border-radius: 5px;
+            text-align: center;
+           
+        }
+
+        h2 {
+            margin-bottom: 20px;
+        }
+
+        input[type="text"], input[type="email"], input[type="password"] {
+            width: 85%;
+            padding: 10px;
+            margin: 10px 0;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+        button[type="submit"] {
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        button[type="submit"]:hover {
+            background-color: #0056b3;
+        }
+
+        p.error {
+            color: red;
+            margin: 10px 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+       
+        <h2>Log in</h2><h2>Register</h2>
+        <form id="signup-form">
+            <input type="text" id="userid" placeholder="User Id" required>
+            
+            <input type="password" id="password" placeholder="Enter Password" required>
+           <p><input type="checkbox" id="check"name="check">Remember Password</p>
+            <button type="submit">Login in</button>
+            <p class="error" id="error-message"></p>
+        </form>
+    </div>
+
+    <script>
+        const signupForm = document.getElementById('signup-form');
+        const errorMessage = document.getElementById('error-message');
+
+        signupForm.addEventListener('submit', function (e) {
+            e.preventDefault();
+
+            const username = document.getElementById('username').value.trim();
+            const email = document.getElementById('email').value.trim();
+            const password = document.getElementById('password').value;
+
+            if (!username || !email || !password) {
+                errorMessage.textContent = 'Please fill in all fields.';
+            } else if (!isValidEmail(email)) {
+                errorMessage.textContent = 'Invalid email address.';
+            } else {
+                // Here, you can perform further actions like sending the data to a server.
+                // For this example, we'll just show a success message.
+                errorMessage.style.color = 'green';
+                errorMessage.textContent = 'Sign up successful!';
+            }
+        });
+
+        // Function to validate email format
+        function isValidEmail(email) {
+            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            return emailRegex.test(email);
+        }
+    </script>
+</body>
+</html>
